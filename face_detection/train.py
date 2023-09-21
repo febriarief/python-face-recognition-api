@@ -7,8 +7,8 @@
 
 import argparse
 import os
-from face_recognition.src.train_main import TrainMain
-from face_recognition.src.default_config import get_default_config, update_config
+from face_detection.src.train_main import TrainMain
+from face_detection.src.default_config import get_default_config, update_config
 
 
 def parse_args():

@@ -1,6 +1,7 @@
 from django.urls import path
-from . import face_recognition
+from . import views
 
 urlpatterns = [
-    path('', face_recognition.checkLiveness),
+    path('', views.index),
+    path('process', views.process)
 ]

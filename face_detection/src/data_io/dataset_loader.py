@@ -6,8 +6,8 @@
 # @Software : PyCharm
 
 from torch.utils.data import DataLoader
-from face_recognition.src.data_io.dataset_folder import DatasetFolderFT
-from face_recognition.src.data_io import transform as trans
+from face_detection.src.data_io.dataset_folder import DatasetFolderFT
+from face_detection.src.data_io import transform as trans
 
 
 def get_train_loader(conf):

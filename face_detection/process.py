@@ -4,13 +4,11 @@ import numpy as np
 import warnings
 import time
 
-from face_recognition.src.anti_spoof_predict import AntiSpoofPredict
-from face_recognition.src.generate_patches import CropImage
-from face_recognition.src.utility import parse_model_name
+from face_detection.src.anti_spoof_predict import AntiSpoofPredict
+from face_detection.src.generate_patches import CropImage
+from face_detection.src.utility import parse_model_name
 
 warnings.filterwarnings('ignore')
-
-SAMPLE_IMAGE_PATH = "storages/images/"
 
 def check_image(image):
     height, width, channel = image.shape
@@ -19,14 +17,14 @@ def check_image(image):
     else:
         return { "status": 200, "message": "", "data": {} }
 
-def liveness(image_name):
-    model_dir = "face_recognition/resources/anti_spoof_models"
+def liveness(filepath):
+    model_dir = "face_detection/resources/anti_spoof_models"
     device_id = 0
     
     try:
         model_test = AntiSpoofPredict(device_id)
         image_cropper = CropImage()
-        image = cv2.imread(SAMPLE_IMAGE_PATH + image_name)
+        image = cv2.imread(filepath)
         # result = check_image(image)
         # if result["status"] is not 200:
         #     return result
@@ -56,7 +54,7 @@ def liveness(image_name):
         value = prediction[0][label]/2
         livenessScore = round(value, 2)
         execTime = round(test_speed, 2)
-        return { "status": 200, "message": "", "data": { "filename": image_name, "liveness": livenessResult, "score": livenessScore, "exec_time": str(execTime) + ' seconds' } }
+        return { "status": 200, "message": "", "data": { "filepath": filepath, "liveness": livenessResult, "score": livenessScore, "exec_time": str(execTime) + ' seconds' } }
     
     except Exception as e:
         return { "status": 500, "message": str(e), "data": {} } 

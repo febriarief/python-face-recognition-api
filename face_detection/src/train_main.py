@@ -11,9 +11,9 @@ from torch.nn import CrossEntropyLoss, MSELoss
 from tqdm import tqdm
 from tensorboardX import SummaryWriter
 
-from face_recognition.src.utility import get_time
-from face_recognition.src.model_lib.MultiFTNet import MultiFTNet
-from face_recognition.src.data_io.dataset_loader import get_train_loader
+from face_detection.src.utility import get_time
+from face_detection.src.model_lib.MultiFTNet import MultiFTNet
+from face_detection.src.data_io.dataset_loader import get_train_loader
 
 
 class TrainMain:

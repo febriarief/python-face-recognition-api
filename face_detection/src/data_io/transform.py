@@ -17,7 +17,7 @@ import numpy as np
 import numbers
 import types
 
-from face_recognition.src.data_io import functional as F
+from face_detection.src.data_io import functional as F
 
 __all__ = ["Compose", "ToTensor", "ToPILImage", "Normalize", "RandomHorizontalFlip",
            "Lambda", "RandomResizedCrop", "ColorJitter", "RandomRotation"]
