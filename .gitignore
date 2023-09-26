@@ -1,3 +1,14 @@
 firebase-admin-sdk.json
 
+src/api/__pycache__
+src/api/migrations
+
+src/apifacerecognition/__pycache__
+
+src/env/__pycache__
 src/env/firebase.py
+
+src/face_comparison/__pycache__
+
+src/face_detection/__pycache__
+src/face_detection/src/__pycache__

@@ -5,7 +5,7 @@ from . import image_processing
 from . import utils
 import face_comparison.process as face_compare
 import face_detection.process as FaceDetection
-import concurrent.futures, math, os, time, traceback
+import concurrent.futures, math, os, psutil, time, traceback
 
 @api_view(["GET"])
 def index(request):
@@ -56,9 +56,22 @@ def process(request):
     
     # Handle face compare and liveness
     if post_data["type"] == "both":
+        cpu_before = psutil.cpu_percent()
+        memory_before = psutil.virtual_memory().percent
+
         filepath_1 = post_data["filepath_1"]
         filepath_2 = post_data["filepath_2"]
         compare_and_liveness_image = compare_and_liveness(filepath_1, filepath_2)
+
+        cpu_after = psutil.cpu_percent()
+        memory_after = psutil.virtual_memory().percent
+
+        cpu_usage = round(cpu_after - cpu_before, 2)
+        memory_usage = round(memory_after - memory_before)
+
+        compare_and_liveness_image['data']["cpu_usage"] = "{}%".format(cpu_usage)
+        compare_and_liveness_image['data']["memory_usage"] = "{}%".format(memory_usage)
+
         return Response(compare_and_liveness_image, status=compare_and_liveness_image["status"])
 
     return Response({ "status": 200, "data": {}, "message": "Hello" }, status=200)

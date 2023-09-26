@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         "NAME": "face_recognition",
         'CLIENT': {
-            "host": "mongodb+srv://dbApiFaceRecognition:dxB9nwVkt6E7EGLm@cluster0.nqie6rj.mongodb.net/?retryWrites=true&w=majority",
+            "host": "mongodb://localhost:27017",
         }
     }
 }
